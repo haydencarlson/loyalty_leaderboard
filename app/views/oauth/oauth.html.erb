@@ -1,0 +1,7 @@
+<div id="twitch_name_submit_container">
+  <%= form_tag("/oauth", method: "post") do %>
+    <%= text_field_tag 'twitch_name', nil, placeholder: 'Enter your twitch name' %>
+    <%= hidden_field_tag 'code', @code %>
+    <%= submit_tag("Confirm") %>
+  <% end %>
+</div>
