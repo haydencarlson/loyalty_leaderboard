@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_07_24_033035) do
     t.integer "points"
     t.integer "hours"
     t.integer "rank"
+    t.string "username"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
