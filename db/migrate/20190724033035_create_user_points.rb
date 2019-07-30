@@ -4,6 +4,7 @@ class CreateUserPoints < ActiveRecord::Migration[5.2]
       t.integer :points
       t.integer :hours
       t.integer :rank
+      t.string :username
       t.references :user
       t.timestamps
     end

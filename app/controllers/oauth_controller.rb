@@ -35,12 +35,17 @@ class OauthController < ApplicationController
       twitch_name: params[:twitch_name]
     })
 
-    # user_points = RestClient.get("https://streamlabs.com/api/v1.0/points/user_points?access_token=#{user.access_token}&sort=time_watched&order=desc")
-    user_points = RestClient.get("https://streamlabs.com/api/v1.0/donations?access_token=#{user.access_token}")
+    user_points = RestClient.get("https://streamlabs.com/api/v1.0/points/user_points?access_token=#{user.access_token}&sort=time_watched&order=desc&limit=10")
     
+    # Parse point response
+    parsed_points = JSON.parse(user_points)
+
+    UserPointsService.new(parsed_points, user).save_user_points
+
     # Render response with token that be used to query user points
     render json: { success: "Access granted. Please use #{user.user_token} for your points command"}
   rescue => e
+    byebug
     render json: { error: 'Error while authorizing'}
   end
 end
